@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magee.system.mapper.SysNoticeMapper">
+
+<select id="getContentById" parameterType="long" resultType="string">
+    select  cast(content as char) as content from sys_notice where notice_id = #{noticeId} limit 1
+</select>
+
+<update id="updateContentById">
+    update sys_notice set content = #{content} where notice_id = #{noticeId}
+</update>
+</mapper>

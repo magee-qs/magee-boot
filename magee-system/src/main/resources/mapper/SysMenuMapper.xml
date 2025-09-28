@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magee.system.mapper.SysMenuMapper">
+
+    <select id="selectMenuAll" resultType="com.magee.system.domain.SysMenu">
+        select distinct m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from sys_menu m where  m.status = 1 and m.deleted = 0
+        order by m.parent_id, m.order_num
+    </select>
+
+    <select id="selectMenuByUserId" resultType="com.magee.system.domain.SysMenu">
+        select distinct  m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from sys_menu m where   m.status = 1 m.deleted = 0
+        order by m.parent_id, m.order_num
+    </select>
+
+    <select id="selectMenuTreeAll" resultType="com.magee.system.domain.SysMenu">
+        select distinct m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from sys_menu m where m.menu_type in ('M', 'C') and m.status = 1 m.deleted = 0
+        order by m.parent_id, m.order_num
+    </select>
+
+    <select id="selectMenuTreeByUserId" resultType="com.magee.system.domain.SysMenu">
+        select distinct  m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from sys_menu m where m.menu_type in ('M', 'C') and m.status = 1 m.deleted = 0
+        order by m.parent_id, m.order_num
+    </select>
+</mapper>

@@ -1,0 +1,61 @@
+/** 缓存信息查询 */
+
+import request from "@/utils/request";
+
+
+/** 缓存查询 */
+export function getCache(){
+    return request({
+        url: '/monitor/cache/list',
+        method:'get'
+    })
+}
+
+// 查询缓存名称列表
+export function listCacheName() {
+  return request({
+    url: '/monitor/cache/getNames',
+    method: 'get'
+  })
+}
+
+// 查询缓存键名列表
+export function listCacheKey(cacheName) {
+  return request({
+    url: '/monitor/cache/getKeys/' + cacheName,
+    method: 'get'
+  })
+}
+
+// 查询缓存内容
+export function getCacheValue(cacheName, cacheKey) {
+  return request({
+    url: '/monitor/cache/getValue/' + cacheName + '/' + cacheKey,
+    method: 'get'
+  })
+}
+
+// 清理指定名称缓存
+export function clearCacheName(cacheName) {
+  return request({
+    url: '/monitor/cache/clearCacheName/' + cacheName,
+    method: 'get'
+  })
+}
+
+// 清理指定键名缓存
+export function clearCacheKey(cacheKey) {
+  return request({
+    url: '/monitor/cache/clearCacheKey/' + cacheKey,
+    method: 'get'
+  })
+}
+
+// 清理全部缓存
+export function clearCacheAll() {
+  return request({
+    url: '/monitor/cache/clearCacheAll',
+    method: 'get'
+  })
+}
+

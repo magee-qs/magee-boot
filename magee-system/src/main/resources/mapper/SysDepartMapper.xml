@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.magee.system.mapper.SysDepartMapper">
+
+     <update id="updateDepartChildren" parameterType="list">
+         update sys_depart set ancestors =
+         <foreach collection="children" item="item" index="index" separator=" " open="case depart_id" close="end">
+             when #{item.departId} then #{item.ancestors}
+         </foreach>
+         where depart_id in
+         <foreach collection="children" item="item" index="index" separator="," open="(" close=")">
+             #{item.departId}
+         </foreach>
+     </update>
+
+    <update id="updateDepartStatus" parameterType="list">
+        update  sys_depart set status = 1 where depart_id in
+        <foreach collection="ids" item="departId"   separator="," open="(" close=")">
+            #{ departId}
+        </foreach>
+    </update>
+</mapper>
