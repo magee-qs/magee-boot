@@ -63,11 +63,50 @@ private String userName;
 ## 在线体验
 admin/123456
 
-演示地址:   
+演示图片:
 
+
+<table> 
+  <tr>
+    <td><img src="./docs/16ee46f8e9595c5ce3dc9dbc803a5144ee7bf8d08b92382fb4a867bb0a6c2f6c.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/74d8670c0f5df6d46318d5d6e86bace62dd2e65c739c40e99126fb97d66d7288.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/ebea67bfd50a59b5ab1b2e3c082c038ba4c01d127b884d906f291860497fb3cc.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/9a1ad629d71988d2e6c1ad9da5cb5cb076a76ca9dc4badb85bfc616d858f52ad.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/409f13a74a4d230f998a797c0175e7d6f1084a8b9a196159f36b6ecea651cd60.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/54092df67364d34b8d8b69819dd33d07e34837afeb7bcc5ac6f34316a0e15215.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/5686562f43156733fa1bf23725afa60219cee45aabd5ce5d9134c459aafc6b01.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/cf7ab3836346de0b166f763eec3914d85dec2eb030e24ba4fe30d740598bade4.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/d2fd3b3c1c00c18e6db88b08bdaf05f6df1bf365e154f46a4dd8371b30bcfe63.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/ebea67bfd50a59b5ab1b2e3c082c038ba4c01d127b884d906f291860497fb3cc.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/7ee3dd1b101d69c4e224b4d6741325b6d970b5b295141aaf8bfbc2b6c3e943e6.png" /></td> 
+  </tr>
+  <tr>
+    <td><img src="./docs/7fa3bfd17201056c9e76b70dd99afcb456faac874cdb808ffbca6f63fcaef960.png" /></td> 
+  </tr>
+</table>
 文档地址:  
 
 ## 演示图
 
-## magee-framework快速开发开交流群
-QQ群:  点击按钮入群
+## magee-framework快速开发开交流群 
+<a href="https://qm.qq.com/q/cuOrHoA6ME" target="_blank" style="display:inline-block;padding:8px 16px;background:#07C160;color:#fff;border-radius:4px;text-decoration:none;">🚀 加入QQ交流群</a>
