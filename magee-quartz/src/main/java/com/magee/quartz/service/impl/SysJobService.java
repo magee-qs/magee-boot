@@ -46,6 +46,8 @@ public class SysJobService extends ServiceImpl<SysJobMapper,SysJob>
 
                 // 修改运行状态
                 changeRunningState(sysJob.getJobId(), 1);
+
+                log.info("加载定时任务{}",sysJob.getJobName());
             }
             log.info("======定时任务组件初始化完成======");
         }catch (Exception ex){

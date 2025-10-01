@@ -80,8 +80,8 @@ public class SysNoticeController {
     }
 
     @GetMapping("/status/{noticeId}")
-    @RequiresPermissions("sys:notice:remove")
-    @ApiOperation("删除通告")
+    @RequiresPermissions("sys:notice:edit")
+    @ApiOperation("修改状态")
     public AjaxResult status(@PathVariable Long noticeId){
         LambdaUpdateWrapper<SysNotice> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(SysNotice::getNoticeId, noticeId)

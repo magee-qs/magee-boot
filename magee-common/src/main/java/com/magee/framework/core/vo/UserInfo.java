@@ -35,7 +35,7 @@ public class UserInfo {
     /**
      * 用户名
      * */
-    private String realName;
+    private String nickName;
 
     /**
      * 头像
@@ -49,9 +49,15 @@ public class UserInfo {
     private String userType;
 
     /**
-     * 部门ID
+     * 归属部门ID
      */
-    private Long deptId;
+    private List<Long> departIds;
+
+    /**
+     * 当前部门
+     * */
+    private Long departId;
+
     /**
      * 用户唯一标识
      */

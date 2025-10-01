@@ -11,7 +11,10 @@ public class CacheConstant {
      */
     public static final String SYS_AUTH_CACHE = "sys-authCache";
 
-
+    /**
+     * 字典管理 menu name
+     */
+    public static final String SYS_MENU_CACHE = "sys-menu";
     /**
      * 字典管理 cache name
      */
@@ -40,10 +43,7 @@ public class CacheConstant {
      * */
     public static final String SYS_DEPART_CACHE = "sys_depart:";
 
-    /**
-     * 菜单缓存
-     * */
-    public static final String SYS_MENU_CACHE = "sys_menu:";
+
 
     /**
      * 系统配置

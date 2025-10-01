@@ -36,7 +36,7 @@ public class SysRoleController {
     private ISysRoleService roleService;
 
     @ApiOperation(value = "获取角色列表")
-    @RequiresPermissions("system:role:list")
+    @RequiresPermissions("system:role:query")
     @GetMapping("/list")
     public AjaxResult list(SysRole role){
         IPage<SysRole> page = SimpleQuery.toPage();
@@ -63,7 +63,7 @@ public class SysRoleController {
     }
 
     @ApiOperation("修改角色")
-    @RequiresPermissions("system:role:update")
+    @RequiresPermissions("system:role:edit")
     @PostMapping("/update")
     public AjaxResult updateRole(@RequestBody SysRole role){
         if(ObjectUtils.isNull(role.getRoleId())){
@@ -93,6 +93,7 @@ public class SysRoleController {
     }
 
     @ApiOperation("查询分配角色的用户")
+    @RequiresPermissions("system:role:query")
     @GetMapping("/userList")
     public AjaxResult getUserList(UserParam userParam){
         IPage<SysUser> page = roleService.getUserByRoleId(userParam);
@@ -102,6 +103,7 @@ public class SysRoleController {
 
     @ApiOperation("保存角色用户")
     @PostMapping("/saveUser")
+    @RequiresPermissions("system:role:edit")
     public AjaxResult saveUser(@Validated  @RequestBody RoleOfUserModel userModel){
         roleService.saveUser(userModel);
         return AjaxResult.ok();
@@ -109,6 +111,7 @@ public class SysRoleController {
 
     @ApiOperation("删除角色用户")
     @PostMapping("/removeUser")
+    @RequiresPermissions("system:role:remove")
     public AjaxResult removeUser(@Validated  @RequestBody RoleOfUserModel userModel){
         roleService.removeUser(userModel);
         return  AjaxResult.ok();
@@ -116,6 +119,7 @@ public class SysRoleController {
 
     @ApiOperation("查询用户分配的角色")
     @GetMapping("/roleList")
+    @RequiresPermissions("system:role:query")
     public AjaxResult getRoleList(RoleParam roleParam){
         IPage<SysRole> page = roleService.getRoleByUserId(roleParam);
         return AjaxResult.list(page);
@@ -124,6 +128,7 @@ public class SysRoleController {
 
     @ApiOperation("保存角色用户")
     @PostMapping("/saveRole")
+    @RequiresPermissions("system:role:edit")
     public AjaxResult saveRole(@Validated  @RequestBody UserOfRoleModel roleModel){
         roleService.saveRole(roleModel);
         return AjaxResult.ok();
@@ -131,6 +136,7 @@ public class SysRoleController {
 
     @ApiOperation("删除角色用户")
     @PostMapping("/removeRole")
+    @RequiresPermissions("system:role:remove")
     public AjaxResult removeUserRole(@Validated  @RequestBody UserOfRoleModel roleModel){
         roleService.removeRole(roleModel);
         return  AjaxResult.ok();

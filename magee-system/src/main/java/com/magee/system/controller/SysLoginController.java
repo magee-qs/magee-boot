@@ -15,6 +15,7 @@ import com.magee.system.domain.SysDictData;
 import com.magee.system.domain.SysMenu;
 import com.magee.system.model.LoginModel;
 import com.magee.system.service.ILoginService;
+import com.magee.system.service.IPermissionService;
 import com.magee.system.service.ISysDictDataService;
 import com.magee.system.service.ISysMenuService;
 import com.magee.system.vo.RouteVO;
@@ -53,7 +54,7 @@ public class SysLoginController {
     private ISysMenuService menuService;
 
     @Autowired
-    private ISysDictDataService dictService;
+    private IPermissionService permissionService;
 
 
 
@@ -123,8 +124,8 @@ public class SysLoginController {
         UserInfo userInfo = SecurityUtils.getUserInfo();
         AjaxResult result = AjaxResult.ok();
         result.put("userInfo", userInfo);
-        result.put("roles",  new String[]{"admin"});
-        result.put("permissions", new String[]{ "*:*:*"});
+        result.put("roles",  permissionService.getLoginRole());
+        result.put("permissions", permissionService.getLoginPermission());
         return result;
     }
 

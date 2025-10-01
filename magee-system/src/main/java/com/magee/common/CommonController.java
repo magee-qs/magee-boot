@@ -2,6 +2,7 @@ package com.magee.common;
 
 import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.magee.common.annotation.AutoLog;
 import com.magee.common.config.SystemConfig;
 import com.magee.common.utils.DateUtils;
 import com.magee.common.utils.ObjectUtils;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,6 +46,7 @@ public class CommonController {
      * 通用文件上传
      * */
     @PostMapping("/upload")
+    @AutoLog(title = "文件上传")
     public AjaxResult upload(MultipartFile file){
         if(file.isEmpty()){
             return AjaxResult.error("没有上传文件");
@@ -63,6 +66,7 @@ public class CommonController {
     /**
      * 文件下载
      * */
+    @AutoLog(title = "文件下载")
     @GetMapping("/download")
     public void download(String fileName, Boolean delete, HttpServletResponse response){
         try{
@@ -85,6 +89,7 @@ public class CommonController {
 
     @ApiOperation("获取字典")
     @GetMapping("/getAllDictData")
+    @AutoLog(title = "查询字典")
     public AjaxResult getAllDictData(){
         List<SysDictData> data = commonAPI.getAllDictData();
         return AjaxResult.ok(data);
@@ -92,6 +97,7 @@ public class CommonController {
 
 
     @ApiOperation("获取字典分类")
+    @AutoLog(title = "查询字典")
     @GetMapping("/getDictType")
     public AjaxResult getDictType(){
         List<SysDictType> list = commonAPI.getDictType();
@@ -100,6 +106,7 @@ public class CommonController {
     }
 
     @ApiOperation("获取用户列表")
+    @AutoLog(title = "查询用户")
     @GetMapping("/getUserList")
     public AjaxResult getUserList(UserParam userParam){
         IPage<SysUser> page = commonAPI.getUserList(userParam);
@@ -107,6 +114,7 @@ public class CommonController {
     }
 
     @ApiOperation("获取角色列表")
+    @AutoLog(title = "查询角色")
     @GetMapping("/getRoleList")
     public AjaxResult getRoleList(SysRole roleParam){
         IPage<SysRole> page = commonAPI.getRoleList(roleParam);
@@ -116,10 +124,27 @@ public class CommonController {
 
     @ApiOperation("获取部门数据")
     @GetMapping("/getDepartList")
+    @AutoLog(title = "查询部门")
     public AjaxResult getDepartList(){
         Object[] arr = commonAPI.getDepartList().stream().filter(item -> ObjectUtils.equal(1, item.getStatus()))
                 .toArray();
         return AjaxResult.ok(arr);
+    }
+
+    @ApiOperation("获取所有上级部门数据")
+    @GetMapping("/getDepartAncestor/{departId}")
+    @AutoLog(title = "查询部门")
+    public AjaxResult getDepartAncestor(@PathVariable Long departId){
+        List<Long> list = commonAPI.getDepartAncestors(Arrays.asList(departId));
+        return AjaxResult.ok(list);
+    }
+
+    @ApiOperation("获取子级部门数据")
+    @GetMapping("/getDepartChildren/{departId}")
+    @AutoLog(title = "查询部门")
+    public AjaxResult getDepartChildren(@PathVariable Long departId){
+        List<Long> list = commonAPI.getDepartChildren(Arrays.asList(departId));
+        return AjaxResult.ok(list);
     }
 
 

@@ -11,20 +11,42 @@
     </select>
 
     <select id="selectMenuByUserId" resultType="com.magee.system.domain.SysMenu">
-        select distinct  m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
-        from sys_menu m where   m.status = 1 m.deleted = 0
-        order by m.parent_id, m.order_num
+        select m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from (
+--              -- 角色授权
+                 select p.menu_id
+                 from sys_user_role ur join sys_permission p on p.item_type = 1 and p.item_id = ur.role_id
+                 where ur.user_id = #{userId}
+--               -- 用户授权
+                 union all
+                 select p.menu_id
+                 from  sys_permission p where p.item_type = 2 and p.item_id = #{userId}
+             ) p join sys_menu m on p.menu_id = m.menu_id
+        where m.status = 1 and m.deleted = 0
+        group by m.menu_id -- 去掉重复菜单
+        order by m.parent_id asc , order_num asc
     </select>
 
     <select id="selectMenuTreeAll" resultType="com.magee.system.domain.SysMenu">
         select distinct m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
-        from sys_menu m where m.menu_type in ('M', 'C') and m.status = 1 m.deleted = 0
+        from sys_menu m where m.menu_type in ('M', 'C') and m.status = 1 and m.deleted = 0
         order by m.parent_id, m.order_num
     </select>
 
     <select id="selectMenuTreeByUserId" resultType="com.magee.system.domain.SysMenu">
-        select distinct  m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
-        from sys_menu m where m.menu_type in ('M', 'C') and m.status = 1 m.deleted = 0
-        order by m.parent_id, m.order_num
+        select m.menu_id, m.parent_id, m.name, m.path, m.component, m.`query`, m.route_name, m.hidden, m.status, ifnull(m.perms,'') as perms, m.frame, m.cache, m.menu_type, m.icon, m.order_num
+        from (
+--              -- 角色授权
+                 select p.menu_id
+                 from sys_user_role ur join sys_permission p on p.item_type = 1 and p.item_id = ur.role_id
+                 where ur.user_id = #{userId}
+--               -- 用户授权
+                 union all
+                 select p.menu_id
+                 from  sys_permission p where p.item_type = 2 and p.item_id = #{userId}
+             ) p join sys_menu m on p.menu_id = m.menu_id
+        where m.status = 1 and m.deleted = 0 and  m.menu_type in ('M', 'C')
+        group by m.menu_id -- 去掉重复菜单
+        order by m.parent_id asc , order_num asc
     </select>
 </mapper>

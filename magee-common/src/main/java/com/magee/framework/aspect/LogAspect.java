@@ -101,8 +101,8 @@ public class LogAspect {
             syslog.setOperateIp(ip);
             syslog.setUrl(StringUtils.substring(ServletUtils.getRequest().getRequestURI(), 0, 255));
             if(userInfo != null){
-                syslog.setOperateName(userInfo.getRealName());
-                Long departId = userInfo.getDeptId();
+                syslog.setOperateName(userInfo.getNickName());
+                Long departId = userInfo.getDepartId();
                 if(ObjectUtils.isNotNull(departId)){
                     String departName = commonAPI.getDepartName(departId);
                     syslog.setOperateDepart(departName);

@@ -147,6 +147,8 @@
             <version>${fastjson.version}</version>
         </dependency>
 
+
+
         <!-- mybatis plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -154,6 +156,10 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser-4.9</artifactId>
+        </dependency>
 
 
         <!-- 动态数据源 -->

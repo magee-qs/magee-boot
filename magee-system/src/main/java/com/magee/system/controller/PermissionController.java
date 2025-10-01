@@ -63,7 +63,7 @@ public class PermissionController extends BaseController {
         if(itemTypeEnum == null){
             return  AjaxResult.error("授权参数类型不正确");
         }
-        permissionService.savePermission(PermissionItemType.Role, permissionModel.getItemId(), permissionModel.getPermIds());
+        permissionService.savePermission(itemTypeEnum, permissionModel.getItemId(), permissionModel.getPermIds());
         return AjaxResult.ok();
     }
 }

@@ -2,6 +2,7 @@ package com.magee.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.magee.common.annotation.PermissionData;
 import com.magee.framework.core.query.SimpleQuery;
 import com.magee.framework.core.vo.AjaxResult;
 import com.magee.system.domain.SysUser;
@@ -31,6 +32,7 @@ public class SysUserController {
 
     @ApiOperation("获取用户列表")
     @GetMapping("/list")
+    @RequiresPermissions("system:user:query")
     public AjaxResult list(UserParam userParam){
         QueryWrapper<SysUser> queryWrapper = SimpleQuery.toQueryWrapper(userParam);
         IPage<SysUser> page = SimpleQuery.toPage();
@@ -65,7 +67,7 @@ public class SysUserController {
 
     @ApiOperation("删除用户")
     @GetMapping("/remove/{userId}")
-    @RequiresPermissions("system:user:edit")
+    @RequiresPermissions("system:user:remove")
     public AjaxResult remove(@PathVariable Long userId){
         userService.removeById(userId);
         return AjaxResult.ok( );

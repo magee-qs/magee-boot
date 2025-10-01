@@ -48,12 +48,6 @@ public class SysRole extends BaseEntity {
     @NotNull(message = "显示顺序不能为空")
     private Integer sort;
 
-    /**
-     * 数据范围 1： 全部 2 ：自定义 3 ：本部门 4 本部门及下属 5 本人数据
-     */
-    @NotNull(message = "数据范围不能为空")
-    @DictField(dictType = "sys_data_scope")
-    private Integer dataScope;
 
 
     /**

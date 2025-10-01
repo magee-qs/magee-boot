@@ -74,9 +74,9 @@ public class SysPostController {
         return AjaxResult.ok();
     }
 
-    @ApiOperation("删除岗位")
+    @ApiOperation("修改状态")
     @GetMapping("/status/{postId}")
-    @RequiresPermissions("sys:post:remove")
+    @RequiresPermissions("sys:post:edit")
     public AjaxResult status(@PathVariable Long postId){
         LambdaUpdateWrapper<SysPost> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(SysPost::getPostId, postId)

@@ -47,6 +47,7 @@
 import { getLogList, removeLog } from '@/api/system/log';
 import Pagination from '@/components/table/Pagination.vue';
 import useMessage from '@/hooks/message';
+import { addDateRange } from '@/utils';
 import { onMounted, ref } from 'vue';
  
 
@@ -72,7 +73,8 @@ onMounted(() => {
     getList()
 })
 
-function getList() {
+function getList() { 
+    addDateRange(queryParam.value,dateRange.value,'operateTime') 
     getLogList(queryParam.value).then((res: any) => {
         logList.value = res.records
         total.value = res.total

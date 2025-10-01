@@ -40,9 +40,9 @@
         <kaptcha.version>2.3.2</kaptcha.version>
         <knife4j-spring-boot-starter.version>3.0.3</knife4j-spring-boot-starter.version>
         <knife4j-spring-ui.version>2.0.9</knife4j-spring-ui.version>
-        <mysql-connector-java.version>8.0.27</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.33</mysql-connector-java.version>
         <mybatis-spring-boot.version>2.1.4</mybatis-spring-boot.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <mybatis-plus.version>3.5.14</mybatis-plus.version>
         <dynamic-datasource-spring-boot-starter.version>3.5.2</dynamic-datasource-spring-boot-starter.version>
         <fastjson.version>1.2.76</fastjson.version>
         <oshi.version>5.8.0</oshi.version>
@@ -76,6 +76,16 @@
                 <artifactId>magee-quartz</artifactId>
                 <version>${magee.version}</version>
             </dependency>
+
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-bom</artifactId>
+                <version>${mybatis-plus.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <dependencies>

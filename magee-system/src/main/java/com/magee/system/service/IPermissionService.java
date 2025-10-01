@@ -1,11 +1,15 @@
 package com.magee.system.service;
 
+import com.magee.common.utils.SecurityUtils;
+import com.magee.framework.core.vo.UserInfo;
 import com.magee.system.domain.SysMenu;
 import com.magee.system.domain.SysPermission;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.magee.system.domain.SysRole;
 import com.magee.system.enums.PermissionItemType;
 import com.magee.system.model.MenuSelectNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,4 +27,15 @@ public interface IPermissionService extends IService<SysPermission> {
      * 保存操作权限
      * */
     void savePermission(PermissionItemType itemType, Long itemId , Long[] permIds);
+
+
+    /**
+     * 查询当前用户权限
+     * */
+    List<String> getLoginPermission();
+
+    /**
+     * 查询当前用户角色
+     * */
+    List<String> getLoginRole();
 }

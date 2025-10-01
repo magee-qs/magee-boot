@@ -63,6 +63,10 @@
                            <el-dropdown type="default" trigger="click" class="ml10">
                               <el-button type="primary" icon="Notification" link>更多操作</el-button>
                               <template #dropdown>
+                                    <el-dropdown-item>
+                                    <el-button type="primary" link icon="CircleCheck" v-hasPerm="['system:role:edit']"
+                                        @click="handlePermission(scope.row)">权限设置</el-button>
+                                </el-dropdown-item>
                                  <el-dropdown-menu>
                                     <el-dropdown-item>
                                        <el-button type="primary" link icon="Key" @click="handleResetPwd(scope.row)"
@@ -85,6 +89,7 @@
 
                </el-col>
                <UserForm ref="userForm" @add="handleQuery" @update="getList"></UserForm>
+                <PermissionForm ref="permForm" :title="permTitle"></PermissionForm>
             </pane>
          </splitpanes>
       </el-row>
@@ -101,7 +106,8 @@ import { computed, onMounted, reactive, ref } from "vue";
 import Pagination from "@/components/table/Pagination.vue";
 import { useRouter } from "vue-router";
 import useMessage from "@/hooks/message";
-import UserForm from "./UserForm.vue";
+import UserForm from "./UserForm.vue"; 
+import PermissionForm from "@/components/perm/PermissionForm.vue";
 
 
 
@@ -122,6 +128,8 @@ const userList = ref([])
 const total = ref(0)
 const showSearch = ref(true)
 
+const permTitle = ref('用户权限')
+const permForm = ref()
 
 const selectedKeys = ref([])
 const selectedRows = ref([])
@@ -205,6 +213,12 @@ function handleResetPwd(row) {
 /** 设置角色 */
 function handleAuthRole(row) {
    router.push('/system/user-auth/role/' + row.userId)
+}
+
+/** 用户权限设置 */
+function handlePermission(row){
+   permTitle.value = '角色权限配置 - ' + row.nickName
+   permForm.value.open(row.userId, 'User')
 }
 
 

@@ -24,7 +24,19 @@ public interface SysDepartMapper extends BaseMapper<SysDepart> {
      * 修改部门状态
      * @param departIds 部门id
      * */
-    int updateDepartStatus(@Param("ids") Long[] ids);
+    int updateDepartStatus(@Param("ids") Long[] departIds);
+
+
+    /**
+     * 遍历获取当前部门和所有部门的上级
+     * */
+    List<Long> getDepartAncestors(List<Long> departIds);
+
+
+    /**
+     * 遍历获取当前部门和所有下级部门
+     * */
+    List<Long> getDepartChildren(@Param("departIds") List<Long> departIds);
 }
 
 

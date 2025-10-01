@@ -3,6 +3,7 @@ package com.magee.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.magee.common.constant.CacheConstant;
+import com.magee.common.utils.ConvertUtils;
 import com.magee.common.utils.StringUtils;
 import com.magee.framework.core.domain.SysLog;
 import com.magee.framework.core.query.SimpleQuery;
@@ -14,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * 功能描述: 通用方法实现
@@ -40,6 +44,9 @@ public class BaseCommonAPI implements IBaseCommonAPI {
 
     @Autowired
     private ISysRoleService roleService;
+
+    @Autowired
+    private ISysMenuService menuService;
 
     @Override
     public String getDepartName(Long departId) {
@@ -130,5 +137,32 @@ public class BaseCommonAPI implements IBaseCommonAPI {
      * */
     public List<SysDepart> getDepartList(){
         return departService.getDepartList();
+    }
+
+
+    /**
+     * 根据组件名获取数据权限规则
+     * */
+    public String getMenuDataScope(String component){
+        SysMenu menu = menuService.getMenuCacheByComponent(component);
+        if(menu == null){
+            return StringUtils.EMPTY;
+        }else{
+            return ConvertUtils.toStr(menu.getDataScope(), StringUtils.EMPTY);
+        }
+    }
+
+    /**
+     * 获取部门的所有父级
+     * */
+    public List<Long> getDepartAncestors(List<Long> departIds){
+        return departService.getDepartAncestors(departIds);
+    }
+
+    /**
+     * 获取部门的所有子部门
+     * */
+    public List<Long> getDepartChildren(List<Long> departIds){
+        return departService.getDepartChildren(departIds);
     }
 }

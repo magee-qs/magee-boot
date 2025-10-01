@@ -117,6 +117,11 @@
                     </template>
                 </el-form-item>
             </el-col>
+             <el-col :span="12" v-if="form.menuType == 'C'">
+                <el-form-item label="数据权限" prop="dataScope">
+                    <DictSelect v-model="form.dataScope" dict-type="sys_data_scope"></DictSelect>
+                </el-form-item>
+            </el-col>
             <el-col :span="12" v-if="form.menuType == 'C'">
                 <el-form-item>
                     <el-input v-model="form.query" placeholder="请输入路由参数" maxlength="255" />
@@ -187,6 +192,7 @@
 import { addMenu, getMenuById, getMenuList, updateMenu } from '@/api/system/menu';
 import BaseForm from '@/components/form/BaseForm.vue';
 import IconSelect from '@/components/IconSelect/IconSelect.vue';
+import DictSelect from '@/components/system/DictSelect.vue';
 import useDictStore, { dictTypeConfig } from '@/store/modules/dict';
 import { handleTree } from '@/utils';
 import { onMounted, ref } from 'vue';
@@ -220,7 +226,8 @@ function init() {
         remark: '',
         status: 1,
         orderNum: 1,
-        cache: 1
+        cache: 1,
+        dataScope: ''
     }
 }
 

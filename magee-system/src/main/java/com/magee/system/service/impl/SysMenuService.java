@@ -1,6 +1,8 @@
 package com.magee.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.magee.common.constant.CacheConstant;
 import com.magee.common.constant.CommonConstant;
 import com.magee.common.utils.SecurityUtils;
 import com.magee.common.utils.StringUtils;
@@ -14,6 +16,8 @@ import com.magee.system.service.ISysUserService;
 import com.magee.system.vo.MetaVO;
 import com.magee.system.vo.RouteVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,6 +45,7 @@ public class SysMenuService extends ServiceImpl<SysMenuMapper, SysMenu>
         List<SysMenu> menus = null;
         SysUser user = userService.getById(userId);
         String userType = user == null ? "": user.getUserType();
+
         if(UserInfo.isAdmin(userType)){
             // 管理员
             menus = menuMapper.selectMenuAll();
@@ -72,7 +77,7 @@ public class SysMenuService extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return 菜单列表
      * */
     public List<RouteVO> getMenuTreeByUserId(Long userId){
-        List<SysMenu> menus = getMenuList(userId);
+        List<SysMenu> menus = getMenuTreeList(userId);
         menus = TreeUtils.toTree(menus, 0L);
         List<RouteVO> routes = buildMenus(menus);
         return  routes;
@@ -254,6 +259,44 @@ public class SysMenuService extends ServiceImpl<SysMenuMapper, SysMenu>
     {
         return StringUtils.replaceEach(path, new String[] { CommonConstant.HTTP, CommonConstant.HTTPS, CommonConstant.WWW, ".", ":" },
                 new String[] { "", "", "", "/", "/" });
+    }
+
+    /**
+     * 添加用户
+     * */
+    @CacheEvict(value = CacheConstant.SYS_MENU_CACHE, allEntries = true)
+    public void addMenu(SysMenu menu){
+        save(menu);
+    }
+
+    /**
+     * 修改用户
+     * */
+    @CacheEvict(value = CacheConstant.SYS_MENU_CACHE, allEntries = true)
+    public void updateMenu(SysMenu menu){
+        updateById(menu);
+    }
+
+
+    /**
+     * 删除用户
+     * */
+    @CacheEvict(value = CacheConstant.SYS_MENU_CACHE, allEntries = true)
+    public void removeMenu(List<Long> menuIds){
+        removeByIds(menuIds);
+    }
+
+
+    /**
+     * 缓存读取menu
+     * */
+    @Cacheable(value = CacheConstant.SYS_MENU_CACHE, key = "#component")
+    public  SysMenu getMenuCacheByComponent(String component){
+        LambdaQueryWrapper<SysMenu> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysMenu::getComponent, component);
+
+        SysMenu sysMenu = getOne(queryWrapper);
+        return sysMenu;
     }
 
 }

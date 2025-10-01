@@ -15,7 +15,8 @@ const usePermissionStore = defineStore('permission', {
         addRoutes: [],
         defaultRoutes: [],
         topbarRouters: [],
-        sidebarRouters: []
+        sidebarRouters: [],
+        loaded: false
     }),
     actions: {
         setRoutes(routes) {
@@ -46,6 +47,7 @@ const usePermissionStore = defineStore('permission', {
                 this.setSidebarRouters(constantRouteMap.concat(sidebarRoutes))
                 this.setDefaultRoutes(sidebarRoutes)
                 this.setTopbarRoutes(defaultRoutes)
+                this.loaded = true
                 return rewriteRoutes
             })
         }

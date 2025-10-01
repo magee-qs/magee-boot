@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.magee.common.constant.CacheConstant;
 import com.magee.common.utils.ConvertUtils;
+import com.magee.common.utils.SecurityUtils;
 import com.magee.common.utils.TreeUtils;
-import com.magee.system.domain.SysMenu;
-import com.magee.system.domain.SysPermission;
+import com.magee.framework.core.vo.UserInfo;
+import com.magee.system.domain.*;
 import com.magee.system.enums.PermissionItemType;
 import com.magee.system.mapper.SysMenuMapper;
+import com.magee.system.mapper.SysUserMapper;
+import com.magee.system.mapper.SysUserRoleMapper;
 import com.magee.system.model.MenuSelectNode;
 import com.magee.system.service.IPermissionService;
 import com.magee.system.mapper.SysPermissionMapper;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,7 +37,11 @@ public class PermissionService extends ServiceImpl<SysPermissionMapper, SysPermi
     @Autowired
     private SysMenuMapper menuMapper;
 
+    @Autowired
     private SysPermissionMapper permissionMapper;
+
+    @Autowired
+    private SysUserRoleMapper userRoleMapper;
 
     /**
      * 菜单权限树
@@ -72,6 +80,48 @@ public class PermissionService extends ServiceImpl<SysPermissionMapper, SysPermi
         }
 
         saveBatch(list);
+    }
+
+    /**
+     * 查询当前用户权限
+     * */
+    public List<String> getLoginPermission(){
+        List<String>  perms = new ArrayList<>();
+        UserInfo userInfo = SecurityUtils.getUserInfo();
+
+        if(userInfo == null){
+            return  perms;
+        }
+        if(userInfo.isAdmin()){
+            perms.add("*:*:*");
+        }else{
+
+            List<String> list = permissionMapper.selectUserPermission(userInfo.getUserId());
+            perms.addAll(list);
+        }
+        return perms;
+    }
+
+    /**
+     * 查询当前用户角色
+     * */
+    public List<String> getLoginRole(){
+        List<String>  list = new ArrayList<>();
+        UserInfo userInfo = SecurityUtils.getUserInfo();
+
+        if(userInfo == null){
+            return  list;
+        }
+        if(userInfo.isAdmin()){
+            list.add("admin");
+        }else{
+
+            List<SysRole> roles = userRoleMapper.selectRoles(userInfo.getUserId());
+            for(SysRole role : roles){
+                list.add(role.getRoleId().toString());
+            }
+        }
+        return list;
     }
 }
 

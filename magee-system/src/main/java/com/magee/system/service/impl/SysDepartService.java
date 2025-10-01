@@ -108,6 +108,20 @@ public class SysDepartService extends ServiceImpl<SysDepartMapper, SysDepart>
         Long[] departId = ConvertUtils.toLongArray(ancestors);
         sysDepartMapper.updateDepartStatus(departId);
     }
+
+    /**
+     * 遍历获取当前部门和所有部门的上级
+     * */
+    public List<Long> getDepartAncestors(List<Long> departIds){
+        return sysDepartMapper.getDepartAncestors(departIds);
+    }
+
+    /**
+     * 遍历获取当前部门和所有下级部门
+     * */
+    public List<Long> getDepartChildren(List<Long> departIds){
+        return sysDepartMapper.getDepartChildren(departIds);
+    }
 }
 
 

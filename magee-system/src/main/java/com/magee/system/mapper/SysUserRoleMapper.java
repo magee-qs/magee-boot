@@ -25,6 +25,9 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
      * 查询角色分配的用户
      * */
     IPage<SysRole> selectRoleByUserId(IPage<SysRole> page, @Param("ew")QueryWrapper<?> queryWrapper , @Param("userId")Long userId);
+
+    /** 查询用户角色 */
+    List<SysRole> selectRoles( @Param("userId")Long userId);
 }
 
 

@@ -32,7 +32,7 @@ router.beforeEach((to, form, next) => {
         } else if (isWhiteList(to.path)) {
             next()
         } else {
-            if (userStore.roles.length === 0) {
+            if (permissionStore.loaded == false) {
                 // 加载用户信息
                 userStore.getInfo().then(() => {
                     isRelogin.show = false

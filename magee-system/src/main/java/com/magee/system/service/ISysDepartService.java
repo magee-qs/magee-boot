@@ -32,5 +32,16 @@ public interface ISysDepartService extends IService<SysDepart> {
      * */
     List<SysDepart> getDepartList();
 
+
     SysDepart getDepartById(Long departId);
+
+    /**
+     * 遍历获取当前部门和所有部门的上级
+     * */
+    List<Long> getDepartAncestors(List<Long> departIds);
+
+    /**
+     * 遍历获取当前部门和所有下级部门
+     * */
+    List<Long> getDepartChildren(List<Long> departIds);
 }

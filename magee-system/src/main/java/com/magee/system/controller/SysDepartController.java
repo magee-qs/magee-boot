@@ -7,6 +7,7 @@ import com.magee.system.domain.SysDepart;
 import com.magee.system.service.ISysDepartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class SysDepartController {
 
     @PostMapping("/add")
     @ApiOperation(value = "添加部门")
+    @RequiresPermissions("sys:depart:add")
     public AjaxResult add(@Validated @RequestBody SysDepart depart){
         departService.addDepart(depart);
         return AjaxResult.ok();
@@ -37,6 +39,7 @@ public class SysDepartController {
 
     @GetMapping("/list")
     @ApiOperation("部门列表")
+    @RequiresPermissions("sys:depart:query")
     public AjaxResult list(SysDepart sysDepart){
         QueryWrapper<SysDepart> queryWrapper = SimpleQuery.toQueryWrapper(sysDepart);
 
@@ -46,6 +49,7 @@ public class SysDepartController {
 
     @ApiOperation("查询获取部门信息")
     @GetMapping("/{departId}")
+    @RequiresPermissions("sys:depart:query")
     public AjaxResult getDepart(@PathVariable  Long departId){
         SysDepart depart = departService.getById(departId);
         return AjaxResult.ok(depart);
@@ -53,6 +57,7 @@ public class SysDepartController {
 
     @PostMapping("/update")
     @ApiOperation("修改部门")
+    @RequiresPermissions("sys:depart:edit")
     public AjaxResult update(@Validated @RequestBody SysDepart depart){
         departService.updateDepart(depart);
         return AjaxResult.ok();

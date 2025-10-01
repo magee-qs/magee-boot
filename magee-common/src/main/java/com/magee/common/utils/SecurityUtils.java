@@ -6,6 +6,8 @@ import com.magee.common.utils.encrypt.MD5Util;
 import com.magee.framework.core.vo.UserInfo;
 import org.apache.shiro.subject.Subject;
 
+import java.util.List;
+
 /**
  * shiro鉴权操作
  *
@@ -49,9 +51,20 @@ public class SecurityUtils {
         return userInfo == null ? null : userInfo.getUserName();
     }
 
-    public static Long getDeptId(){
+    /**
+     * 返回第一个部门
+     * */
+    public static Long getDepartId(){
         UserInfo userInfo = getUserInfo();
-        return userInfo == null ? null : userInfo.getDeptId();
+        return  userInfo == null ? null : userInfo.getDepartId();
+    }
+
+    /**
+     * 返回所有部门
+     * */
+    public static List<Long> getDepartIds(){
+        UserInfo userInfo = getUserInfo();
+        return userInfo == null ? null : userInfo.getDepartIds();
     }
 
     public static String encryptPwd(String pwd, String salt){
