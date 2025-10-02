@@ -32,7 +32,7 @@ public class SysUserController {
 
     @ApiOperation("获取用户列表")
     @GetMapping("/list")
-    @RequiresPermissions("system:user:query")
+    @RequiresPermissions("system:user:query") 
     public AjaxResult list(UserParam userParam){
         QueryWrapper<SysUser> queryWrapper = SimpleQuery.toQueryWrapper(userParam);
         IPage<SysUser> page = SimpleQuery.toPage();

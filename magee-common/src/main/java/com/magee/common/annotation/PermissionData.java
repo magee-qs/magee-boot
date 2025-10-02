@@ -23,4 +23,14 @@ public @interface PermissionData {
      * 自定义sql
      * */
     String sql() default "";
+
+    /**
+     * 默认depart_id字段 多表连接查询 d1.depart_id
+     * */
+    String departColumn() default  "depart_id";
+
+    /**
+     * 默认user字段 多表连接查询 u1.create_by
+     * */
+    String userColumn() default  "create_by";
 }

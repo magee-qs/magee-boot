@@ -58,6 +58,10 @@ public class PermissionDataAspect {
         // 缓存参数
         PermissionDataContext context = new PermissionDataContext();
 
+        // 设置部门查询列
+        context.setDepartColumn(permissionData.departColumn());
+        // 设置用户查询列
+        context.setUserColumn(permissionData.userColumn());
         // 用户id
         context.setUserId(SecurityUtils.getUserId());
 
