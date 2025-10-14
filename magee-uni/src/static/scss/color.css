@@ -1,0 +1,14 @@
+/* 颜色变量 */
+:root {
+  --primary-color: #007AFF;
+  --success-color: #34C759;
+  --warning-color: #FF9500;
+  --error-color: #FF3B30;
+  --info-color: #5856D6;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --background-color: #F5F7FA;
+  --card-background: #FFFFFF;
+  --border-color: #F0F0F0;
+}

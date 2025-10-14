@@ -1,0 +1,94 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "应用中心",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/message/message",
+      "style": {
+        "navigationBarTitleText": "消息中心",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/user/list",
+      "style": {
+        "navigationBarTitleText": "用户管理"
+      }
+    },
+    {
+      "path": "pages/user/form",
+      "style": {
+        "navigationBarTitleText": "用户信息"
+      }
+    },
+    {
+      "path": "pages/role/list",
+      "style": {
+        "navigationBarTitleText": "角色管理"
+      }
+    },
+    {
+      "path": "pages/login",
+      "style": {
+        "navigationBarTitleText": "用户登录",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "业务系统",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F5F7FA",
+    "app-plus": {
+      "background": "#F5F7FA"
+    }
+  },
+  "tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#39b54a",
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "black",
+    "height": "50px",
+    "fontSize": "11px",
+    "iconWidth": "24px",
+    "spacing": "3px",
+    "list": [
+      {
+        "iconPath": "static/tabbar/tabbar-home-2.png",
+        "selectedIconPath": "static/tabbar/tabbar-home.png",
+        "pagePath": "pages/index/index",
+        "text": "协作"
+      },
+      {
+        "iconPath": "static/tabbar/tabbar-message-2.png",
+        "selectedIconPath": "static/tabbar/tabbar-message.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
+      },
+      {
+        "iconPath": "static/tabbar/tabbar-user-2.png",
+        "selectedIconPath": "static/tabbar/tabbar-user.png",
+        "pagePath": "pages/profile/profile",
+        "text": "个人"
+      }
+    ]
+  }
+}

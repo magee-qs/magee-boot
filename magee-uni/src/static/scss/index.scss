@@ -1,0 +1,180 @@
+// global
+@use "./global.scss";
+// color-ui
+@use "./colorui.css";
+// iconfont
+@use "../font/iconfont.css";
+
+@use "./color.css";
+
+@use "./utility.css";
+
+
+/* 通用样式 */
+.page-container {
+  background-color: #F5F7FA;
+  min-height: 100vh;
+}
+
+/* 卡片样式 */
+.common-card {
+  background: white;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 统计卡片 */
+.stats-section {
+  background: white;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  padding: 20rpx 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.stat-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 功能项样式 */
+.function-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.function-icon {
+  font-size: 48rpx;
+  margin-bottom: 20rpx;
+}
+
+.function-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 快速操作 */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 20rpx 0;
+}
+
+.action-tag {
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 列表样式 */
+.list-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+/* 用户头像 */
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+/* 按钮样式 */
+.action-buttons {
+  padding: 40rpx 20rpx;
+}
+
+.action-btn {
+  width: 100%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn {
+  background: #007AFF;
+  color: white;
+  border: none;
+}
+
+.secondary-btn {
+  background: #F2F2F7;
+  color: #333;
+  border: none;
+}
+
+.danger-btn {
+  background: #FF3B30;
+  color: white;
+  border: none;
+}
+
+/* 弹窗内容 */
+.popup-content {
+  background: white;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 40rpx;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* 搜索区域 */
+.search-section {
+  background: white;
+  padding: 20rpx;
+  display: flex;
+  gap: 20rpx;
+  align-items: center;
+}
+
+/* 工具栏 */
+.toolbar {
+  background: white;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 30rpx;
+}
+
+/* 列表容器 */
+.list-container {
+  height: calc(100vh - 300rpx);
+}
+
+/* 表单样式 */
+.form-section {
+  margin-bottom: 40rpx;
+}
+
+.submit-btn {
+  margin-top: 40rpx;
+  background: #007AFF;
+  color: white;
+}
+ 
